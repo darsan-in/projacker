@@ -1,0 +1,17 @@
+{
+  "name": "projacker",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "DARSAN [hello@darsan.in]",
+  "license": "MIT",
+  "description": "Make records of local git repositories",
+  "dependencies": {
+    "glob": "^11.0.0",
+    "ts-node": "^10.9.2",
+    "tsc": "^2.0.4"
+  }
+}

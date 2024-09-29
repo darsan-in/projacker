@@ -1,0 +1,30 @@
+{
+  "ignore": [
+    "Richie-JS-Demo",
+    "Hawk-JS-Demo",
+    "Minomax-Demo",
+    ".github",
+    "first-hunt",
+    "Template-repo",
+    "pixteroid-demo",
+    "handstop-demo",
+    ".github"
+  ],
+
+  "dontCount": [
+    "Minomax-Demo",
+    "Richie-JS-Demo",
+    "Hawk-JS-Demo",
+    ".github",
+    "first-hunt",
+    "BONSE-API",
+    "Colibit",
+    "Github-Admin",
+    "Template-repo",
+    "SEO-KW-Filter",
+    "pixteroid-demo",
+    "handstop-demo",
+    "Fastimage-API",
+    ".github"
+  ]
+}
