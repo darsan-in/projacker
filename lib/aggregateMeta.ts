@@ -98,5 +98,42 @@ export default async function aggregateMeta(): Promise<
     }
   }
 
-  return reposMeta;
+  //sort by recency & update date format
+  const result = reposMeta
+    /* @ts-ignore */
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .map((meta) => {
+      return {
+        ...meta,
+        createdAt: convertDate(meta.createdAt),
+        updatedAt: convertDate(meta.updatedAt),
+      };
+    });
+
+  return result;
+}
+
+function convertDate(dateString: string): string {
+  const date = new Date(dateString);
+
+  let monthAbbreviations = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const day = date.getUTCDate();
+  const month = monthAbbreviations[date.getUTCMonth()];
+  const year = date.getUTCFullYear();
+
+  return `${day} ${month} ${year}`;
 }

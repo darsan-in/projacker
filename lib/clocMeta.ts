@@ -19,14 +19,19 @@ export default function getClocMeta(repoRoot: string): ClocMeta {
 
   const clocMeta: ClocMeta = {} as ClocMeta;
 
-  clocMeta.loc = clocMetaRaw["SUM"].code;
+  let unwantedLOC = 0;
+  for (const lang of ignorelangs) {
+    if (clocMetaRaw[lang] === undefined) {
+      continue;
+    }
+    unwantedLOC += clocMetaRaw[lang].code;
+    delete clocMetaRaw[lang];
+  }
+
+  clocMeta.loc = clocMetaRaw["SUM"].code - unwantedLOC;
 
   delete clocMetaRaw["header"];
   delete clocMetaRaw["SUM"];
-
-  ignorelangs.forEach((lang: string) => {
-    delete clocMetaRaw[lang];
-  });
 
   clocMeta.languagesMeta = calculateLangUtilPercentage(
     clocMeta.loc,
