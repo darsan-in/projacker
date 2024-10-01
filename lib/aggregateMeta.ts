@@ -1,6 +1,7 @@
 import { execSync } from "child_process";
 import { existsSync } from "fs";
 import { basename, join } from "path";
+import { ignore } from "../ignorelist.json";
 import getClocMeta, { ClocMeta } from "./clocMeta";
 import { GithubRepoMeta } from "./ds";
 import getRepos from "./listRepo";
@@ -22,7 +23,11 @@ export default async function aggregateMeta(): Promise<
         .toString("utf8")
         .trim();
 
-      const name = basename(gitUrl).split(".git").slice(0, 1).join("");
+      const name = basename(repoPath);
+      if (ignore.includes(name)) {
+        continue;
+      }
+
       const owner = userName;
 
       let htmlUrl = "";

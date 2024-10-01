@@ -8,7 +8,7 @@ export default function getRepos() {
 
   const reposMeta: Record<string, string[]> = {
     cresteem: [],
-    darsan: [],
+    "darsan.in": [],
   };
 
   Object.keys(userReposPatterns).forEach((userName) => {

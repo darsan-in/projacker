@@ -1,4 +1,5 @@
 import { execSync } from "child_process";
+import { ignorelangs } from "../ignorelist.json";
 
 export interface ClocMeta {
   loc: number;
@@ -22,8 +23,10 @@ export default function getClocMeta(repoRoot: string): ClocMeta {
 
   delete clocMetaRaw["header"];
   delete clocMetaRaw["SUM"];
-  delete clocMetaRaw["Text"];
-  delete clocMetaRaw["JSON"];
+
+  ignorelangs.forEach((lang: string) => {
+    delete clocMetaRaw[lang];
+  });
 
   clocMeta.languagesMeta = calculateLangUtilPercentage(
     clocMeta.loc,
